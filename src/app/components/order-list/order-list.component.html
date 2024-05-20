@@ -1,0 +1,30 @@
+<mat-accordion *ngFor="let order of orders">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <a routerLink="/orders/{{order.id}}">Order Name: {{order.orderName}}</a>
+      </mat-panel-title>
+      <mat-panel-description>
+        Total price: {{ order.totalPrice | currency : "USD" }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>Order created at: {{ order.createdAt }}</p>
+    <p>Fulfillment status:{{ order.fulfilmentStatus }}</p>
+    <p>Total tax: {{ order.tax | currency : "USD" }}</p>
+    <p>Payment Status: {{ order.paymentStatus }}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<mat-paginator #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               [length]="length"
+               [pageSize]="pageSize"
+               [disabled]="disabled"
+               [showFirstLastButtons]="showFirstLastButtons"
+               [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+               [hidePageSize]="hidePageSize"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>

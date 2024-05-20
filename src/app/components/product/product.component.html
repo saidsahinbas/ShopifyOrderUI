@@ -1,0 +1,27 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-card *ngFor="let product of products"  class="example-card">
+    <mat-card-header routerLink="/products/:{{product.id}}">
+      <mat-card-title-group>
+        <mat-card-title>{{product.title}}</mat-card-title>
+        <mat-card-subtitle>{{product.vendor}}</mat-card-subtitle>
+        <img mat-card-sm-image src={{product.images[0].imageSource}} >
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      {{product.variants[0].price | currency : "USD"}}
+    </mat-card-content>
+  </mat-card>
+</mat-grid-list>
+<mat-paginator #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               onclick="clicked"
+               [length]="length"
+               [pageSize]="pageSize"
+               [disabled]="disabled"
+               [showFirstLastButtons]="showFirstLastButtons"
+               [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+               [hidePageSize]="hidePageSize"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>
